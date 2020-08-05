@@ -8,6 +8,9 @@
 #
 
 library(shiny)
+library(shinythemes)
+library(data.table)
+library(RCurl)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme("united"),

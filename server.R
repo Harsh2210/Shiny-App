@@ -8,6 +8,9 @@
 #
 
 library(shiny)
+library(shinythemes)
+library(data.table)
+library(RCurl)
 
 shinyServer(function(input, output, session) {
     
