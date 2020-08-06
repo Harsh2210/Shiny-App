@@ -12,6 +12,11 @@ library(shinythemes)
 library(data.table)
 library(RCurl)
 
+dataset <- read.csv("C:\\Users\\harsh\\Desktop\\Introduction to Machine learning and Data Mining\\DA5030\\shinyData.csv")
+
+softplus <- function(x) log(1+exp(x))
+neuralnet_model <- neuralnet(treatment~., data = dataset,stepmax=1e+08,threshold = 0.5,rep = 1,linear.output = FALSE, act.fct = softplus)
+
 shinyServer(function(input, output, session) {
     
     # Input Data
@@ -67,9 +72,14 @@ shinyServer(function(input, output, session) {
         
         #test$outlook <- factor(test$outlook, levels = c("overcast", "rainy", "sunny"))
         
-        Output <- predict(model,df)
-        pred_nn <- data.frame(Prediction=as.factor(ifelse(Output>1.5, "You Sought treatment", "You Should Seek Treatment")))
+        #Output <- predict(model,df)
+        #pred_nn <- data.frame(Prediction=as.factor(ifelse(Output>1.5, "You Sought treatment", "You Should Seek Treatment")))
         
+        #print(pred_nn)
+        
+        nn_predictions <- compute(neuralnet_model, df)
+        net_results <- nn_predictions$net.result
+        pred_nn <- data.frame(Prediction=as.factor(ifelse(net_results > 1.5, "You Sought treatment", "You Should Seek Treatment")))
         print(pred_nn)
         
     })
