@@ -12,7 +12,7 @@ library(shinythemes)
 library(data.table)
 library(RCurl)
 
-dataset <- read.csv("C:\\Users\\harsh\\Desktop\\Introduction to Machine learning and Data Mining\\DA5030\\shinyData.csv")
+dataset <- read.csv("shinyData.csv",sep=',')
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme("united"),
