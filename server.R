@@ -16,11 +16,16 @@ library(psych)
 library(caret)
 
 dataset <- read.csv("shinyData.csv",sep = ',')
-#model <- readRDS("model.rds")
-softplus <- function(x) log(1+exp(x))
-model <- neuralnet(treatment~., data = dataset,stepmax=1e+08,threshold = 0.5,rep = 1,linear.output = FALSE, act.fct = softplus)
+model <- readRDS("model.rds")
+#softplus <- function(x) log(1+exp(x))
+#model <- neuralnet(treatment~., data = dataset,stepmax=1e+08,threshold = 0.5,rep = 1,linear.output = FALSE, act.fct = softplus)
 
 shinyServer(function(input, output, session) {
+    autoInvalidate <- reactiveTimer(10000)
+    observe({
+        autoInvalidate()
+        cat(".")
+    })
     
     # Input Data
     datasetInput <- reactive({  
