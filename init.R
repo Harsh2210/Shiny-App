@@ -1,4 +1,4 @@
-my_packages = c("RCurl", "data.table","shinythemes","neuralnet","psych","caret")
+my_packages = c("RCurl", "data.table","shinythemes","neuralnet")
 
 install_if_missing = function(p) {
   if (p %in% rownames(installed.packages()) == FALSE) {
