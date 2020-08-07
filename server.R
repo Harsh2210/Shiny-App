@@ -80,7 +80,7 @@ shinyServer(function(input, output, session) {
         
         nn_predictions <- compute(model, df)
         net_results <- nn_predictions$net.result
-        pred_nn <- data.frame(Prediction=as.factor(ifelse(net_results > 1.5, "You Sought treatment", "You Should Seek Treatment")))
+        pred_nn <- data.frame(Prediction=ifelse(net_results > 1.5, "Sought treatment", "Not Sought Treatment"))
         print(pred_nn)
         
     })
